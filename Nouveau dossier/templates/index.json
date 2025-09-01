@@ -1,4 +1,16 @@
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "product": {
+      "type": "single-product",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "product"
+  ]
 }

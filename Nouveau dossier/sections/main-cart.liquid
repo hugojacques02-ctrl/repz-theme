@@ -1,24 +1,30 @@
-<section class="container" style="padding:24px 0 48px">
-  <h1>Panier</h1>
+<section class="container" style="padding: 36px 0 56px;">
+  <h1 style="font-size:2rem;font-weight:900;margin:0 0 1rem 0;">Votre panier</h1>
+
   {% if cart.item_count == 0 %}
     <p class="muted">Votre panier est vide.</p>
+    <a class="btn" href="{{ routes.all_products_collection_url }}">Continuer vos achats</a>
   {% else %}
     <form action="{{ routes.cart_url }}" method="post">
-      {% for item in cart.items %}
-        <div style="display:grid;grid-template-columns:64px 1fr auto;gap:1rem;align-items:center;border-bottom:1px solid #1f1f1f;padding:1rem 0">
-          <img src="{{ item.image | image_url: width: 128 }}" alt="{{ item.product.title }}" style="width:64px;height:64px;object-fit:cover;border-radius:6px">
-          <div>
-            <div><strong>{{ item.product.title }}</strong> {% if item.variant.title != 'Default Title' %}<span class="muted">— {{ item.variant.title }}</span>{% endif %}</div>
-            <div class="muted">{{ item.line_price | money }}</div>
-            <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:90px;margin-top:.5rem">
+      <div class="card">
+        {% for item in cart.items %}
+          <div style="display:grid;grid-template-columns:64px 1fr auto;gap:1rem;align-items:center;border-bottom:1px solid #1f1f1f;padding:1rem 0;">
+            <img src="{{ item.image | image_url: width: 128 }}" alt="{{ item.product.title }}" style="width:64px;height:64px;object-fit:cover;border-radius:8px;">
+            <div>
+              <div><strong>{{ item.product.title }}</strong>{% if item.variant.title != 'Default Title' %} <span class="muted">— {{ item.variant.title }}</span>{% endif %}</div>
+              <div class="muted">{{ item.line_price | money }}</div>
+              <div style="margin-top:.5rem;">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:100px;">
+              </div>
+            </div>
+            <a href="{{ item.url_to_remove }}" aria-label="Retirer" style="color:#ff6b6b;">Retirer</a>
           </div>
-          <a href="{{ item.url_to_remove }}">Retirer</a>
+        {% endfor %}
+        <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:1rem;">
+          <div class="price">Total : {{ cart.total_price | money }}</div>
+          <button class="btn" name="update" type="submit">Mettre à jour</button>
+          <a class="btn" href="{{ routes.cart_url }}/checkout">Passer au paiement</a>
         </div>
-      {% endfor %}
-      <div style="text-align:right;margin-top:1rem">
-        <strong>Total : {{ cart.total_price | money }}</strong><br><br>
-        <button class="btn" name="update" type="submit">Mettre à jour</button>
-        <a class="btn" href="{{ routes.cart_url }}/checkout">Payer</a>
       </div>
     </form>
   {% endif %}
