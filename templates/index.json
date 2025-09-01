@@ -11,11 +11,18 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "heading": "REPZ Pump Cover",
+        "subheading": "Lancement officiel — une seule pièce, pensée pour la salle.",
+        "button_label": "Acheter maintenant",
+        "button_link": ""
+      }
     },
     "product": {
       "type": "single-product",
-      "settings": {}
+      "settings": {
+        "product": ""
+      }
     }
   },
   "order": [
