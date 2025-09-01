@@ -1,0 +1,17 @@
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+    <div>
+      <a href="{{ routes.root_url }}">
+        <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" style="height:34px;width:auto">
+      </a>
+    </div>
+    <nav style="display:flex;gap:1rem">
+      <a href="{{ routes.root_url }}">Accueil</a>
+      <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      <a href="/pages/a-propos">À propos</a>
+      <a href="/pages/contact">Contact</a>
+      <a href="{{ routes.cart_url }}">Panier</a>
+    </nav>
+  </div>
+</header>
+{% schema %}{"name":"Entete","settings":[]} {% endschema %}
