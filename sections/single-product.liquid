@@ -1,0 +1,51 @@
+{% assign featured = all_products[section.settings.product] %}
+<section class="container" style="padding: 36px 0 56px;">
+  <div class="grid grid-2" style="align-items:center;">
+    <div class="card" style="min-height:320px; display:flex; align-items:center; justify-content:center;">
+      {% if featured != blank and featured.featured_image %}
+        <img src="{{ featured.featured_image | image_url: width: 1000 }}" alt="{{ featured.title }}" style="width:100%;height:auto;border-radius:12px;">
+      {% else %}
+        <div class="muted">Image produit (placeholder)</div>
+      {% endif %}
+    </div>
+    <div>
+      <h2 style="margin-top:0; font-size:clamp(1.5rem,4vw,2.25rem); font-weight:800;">
+        {{ featured.title | default: 'Produit de lancement REPZ' }}
+      </h2>
+      {% if featured %}
+        <div class="price">{{ featured.price | money }}</div>
+        <div class="muted" style="margin:.5rem 0 1rem;">{{ featured.description | strip_html | truncate: 220 }}</div>
+        <form method="post" action="/cart/add" class="card" style="padding:1rem;">
+          {% if featured.variants.size > 1 %}
+            <label for="variant-select">Choisir une variante</label>
+            <select id="variant-select" name="id" style="margin:.5rem 0 1rem;">
+              {% for v in featured.variants %}
+                <option value="{{ v.id }}"{% if v == featured.selected_or_first_available_variant %} selected{% endif %}>
+                  {{ v.title }} — {{ v.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="hidden" name="id" value="{{ featured.variants.first.id }}">
+          {% endif %}
+          <label for="qty">Quantité</label>
+          <input id="qty" type="number" name="quantity" value="1" min="1" style="margin:.5rem 0 1rem;">
+          <button class="btn" type="submit" {% if featured.available == false %}disabled{% endif %}>
+            {% if featured.available %}Ajouter au panier{% else %}Rupture de stock{% endif %}
+          </button>
+        </form>
+      {% else %}
+        <p class="muted">Sélectionnez un produit dans les paramètres de la section.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Produit unique (homepage)",
+  "settings": [
+    { "type":"product", "id":"product", "label":"Produit à mettre en avant" }
+  ],
+  "presets": [{ "name":"Produit REPZ" }]
+}
+{% endschema %}

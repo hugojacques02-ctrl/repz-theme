@@ -4,21 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page_title }} — {{ shop.name }}</title>
-  <link rel="icon" href="{{ 'favicon.png' | asset_url }}">
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
   {{ content_for_header }}
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0b0b;color:#fff}
-    a{color:#fff;text-decoration:none}
-    .container{width:min(1100px,92%);margin:0 auto}
-    .btn{display:inline-block;padding:.75rem 1rem;background:#d20f0f;border-radius:10px;color:#fff;font-weight:700}
-    header,footer{border-bottom:1px solid #1f1f1f}
-    footer{border-top:1px solid #1f1f1f;border-bottom:0;margin-top:2rem;padding:1.25rem 0;color:#ccc}
-    .muted{color:#b3b3b3}
+    :root { --accent:#d20f0f; --bg:#0b0b0b; --fg:#ffffff; --muted:#a3a3a3; }
+    body { background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin:0; }
+    main { min-height: 60vh; }
+    a { color: var(--fg); text-decoration: none; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+    .btn { display:inline-block; padding:.9rem 1.25rem; background: var(--accent); color:#fff; border-radius:12px; font-weight:700; letter-spacing:.2px; }
+    .btn[disabled] { opacity:.6; cursor:not-allowed; }
+    .price { font-size:1.25rem; font-weight:700; }
+    .muted { color: var(--muted); }
+    .grid { display:grid; gap:1.25rem; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media (max-width: 860px){ .grid-2 { grid-template-columns:1fr; } }
+    .card { background:#121212; border:1px solid #1f1f1f; border-radius:18px; padding:1.25rem; }
+    input, select { width: 100%; padding: .75rem .85rem; border-radius:12px; border:1px solid #2a2a2a; background:#0e0e0e; color:#fff; }
+    header .logo { font-weight:900; letter-spacing:.5px; font-size:1.25rem; }
+    footer { border-top:1px solid #1f1f1f; margin-top:3rem; padding:2rem 0; color:#cfcfcf; }
   </style>
 </head>
 <body>
   {% section 'header' %}
   <main role="main">{{ content_for_layout }}</main>
   {% section 'footer' %}
+  {{ 'theme.js' | asset_url | script_tag }}
 </body>
 </html>

@@ -1,6 +1,23 @@
 <footer>
-  <div class="container">
-    <div class="muted">© {{ 'now' | date: '%Y' }} {{ shop.name }}</div>
+  <div class="container grid grid-2">
+    <div>
+      <strong>{{ shop.name }}</strong><br>
+      <span class="muted">© {{ 'now' | date: '%Y' }} {{ shop.name }}. Tous droits réservés.</span>
+    </div>
+    <div style="text-align:right;">
+      {% if settings.instagram_url != blank %}<a href="{{ settings.instagram_url }}" target="_blank">Instagram</a>{% endif %}
+      {% if settings.tiktok_url != blank %} &nbsp;|&nbsp; <a href="{{ settings.tiktok_url }}" target="_blank">TikTok</a>{% endif %}
+      {% if settings.youtube_url != blank %} &nbsp;|&nbsp; <a href="{{ settings.youtube_url }}" target="_blank">YouTube</a>{% endif %}
+    </div>
   </div>
 </footer>
-{% schema %}{"name":"Pied de page","settings":[]} {% endschema %}
+{% schema %}
+{
+  "name": "Pied de page",
+  "settings": [
+    { "type":"url", "id":"instagram_url", "label":"Instagram" },
+    { "type":"url", "id":"tiktok_url", "label":"TikTok" },
+    { "type":"url", "id":"youtube_url", "label":"YouTube" }
+  ]
+}
+{% endschema %}

@@ -1,6 +1,24 @@
 [
   {
-    "name": "General",
-    "settings": []
+    "name": "Général",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Slogan",
+        "default": "REPZ or Die Tryin’"
+      },
+      {
+        "type": "color",
+        "id": "accent",
+        "label": "Couleur d’accent",
+        "default": "#d20f0f"
+      }
+    ]
   }
 ]

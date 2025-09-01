@@ -1,29 +1,12 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {
-        "heading": "REPZ Pump Cover",
-        "subheading": "Lancement officiel — une seule pièce, pensée pour la salle.",
-        "button_label": "Acheter maintenant",
-        "button_link": "",
-        "bg": "shopify://shop_images/33BEBEE5-10DE-40FE-8435-8C14FB676259.png"
-      }
+      "settings": {}
     },
     "product": {
       "type": "single-product",
-      "settings": {
-        "product": ""
-      }
+      "settings": {}
     }
   },
   "order": [
