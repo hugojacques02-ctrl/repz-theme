@@ -15,11 +15,13 @@
       </div>
       {% endif %}
     </div>
-    <div class="card" style="min-height:280px; display:flex; align-items:center; justify-content:center; background: url({{ section.settings.bg | image_url: width: 1200 }}) center/cover no-repeat, #121212;">
-      <div class="muted">Image bannière / placeholder</div>
+    <div class="card" style="min-height:280px; display:flex; align-items:center; justify-content:center;
+         background: url({% if section.settings.bg != blank %}{{ section.settings.bg | image_url: width: 1200 }}{% else %}{{ 'logo.png' | asset_url }}{% endif %})
+         center/contain no-repeat, #121212;">
     </div>
   </div>
 </section>
+
 {% schema %}
 {
   "name": "Bannière Hero",
