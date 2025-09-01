@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} — {{ shop.name }}</title>
+  <link rel="icon" href="{{ 'favicon.png' | asset_url }}">
+  {{ content_for_header }}
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0b0b;color:#fff}
+    a{color:#fff;text-decoration:none}
+    .container{width:min(1100px,92%);margin:0 auto}
+    .btn{display:inline-block;padding:.75rem 1rem;background:#d20f0f;border-radius:10px;color:#fff;font-weight:700}
+    header,footer{border-bottom:1px solid #1f1f1f}
+    footer{border-top:1px solid #1f1f1f;border-bottom:0;margin-top:2rem;padding:1.25rem 0;color:#ccc}
+    .muted{color:#b3b3b3}
+  </style>
+</head>
+<body>
+  {% section 'header' %}
+  <main role="main">{{ content_for_layout }}</main>
+  {% section 'footer' %}
+</body>
+</html>
