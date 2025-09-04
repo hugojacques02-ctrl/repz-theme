@@ -1,50 +1,63 @@
 <section class="container" style="padding: 36px 0 56px;">
-  <div class="grid grid-2" style="align-items:start;">
-    
-    <!-- Bloc image produit -->
+  <div class="grid grid-2" style="align-items:start; gap: 24px;">
+
+    <!-- BLOC IMAGE PRODUIT (ancre pour l’overlay) -->
     <div class="card" style="position:relative;">
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 1200 }}" 
-             alt="{{ product.title }}" 
-             style="width:100%;height:auto;border-radius:12px;">
+        <img
+          src="{{ product.featured_image | image_url: width: 1200 }}"
+          alt="{{ product.title }}"
+          style="width:100%;height:auto;border-radius:12px;"
+        >
       {% endif %}
 
-      <!-- Boîte quantité dans le carré image -->
+      <!-- OVERLAY : Quantité + Ajouter au panier (lié au vrai formulaire via form="...") -->
       <div class="repz-qty-overlay">
         <div class="repz-qty-box">
-          <label for="repz-qty-{{ section.id }}">Quantité</label>
-          <input 
-            id="repz-qty-{{ section.id }}" 
-            type="number" 
-            name="quantity" 
-            value="1" 
-            min="1" 
-            form="product-form-{{ section.id }}">
-          <button 
-            type="submit" 
-            class="repz-btn" 
-            form="product-form-{{ section.id }}">
-            Ajouter au panier
+          <label for="repz-qty-{{ section.id }}" class="repz-qty-label">Quantité</label>
+          <input
+            id="repz-qty-{{ section.id }}"
+            type="number"
+            name="quantity"
+            min="1"
+            value="1"
+            form="product-form-{{ section.id }}"
+            class="repz-qty-input"
+          >
+          <button
+            type="submit"
+            class="repz-btn"
+            form="product-form-{{ section.id }}"
+            {% if product.available == false %}disabled{% endif %}
+          >
+            {% if product.available %}Ajouter au panier{% else %}Rupture de stock{% endif %}
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Bloc infos produit -->
+    <!-- BLOC INFOS + VRAI FORMULAIRE -->
     <div>
       <h1 style="margin:0 0 .5rem 0; font-size:clamp(1.6rem,4.6vw,2.6rem); font-weight:900;">
         {{ product.title }}
       </h1>
-      <div class="price" style="margin-bottom:.75rem;">{{ product.price | money }}</div>
-      <div class="muted" style="margin-bottom:1.25rem;">{{ product.description }}</div>
 
-      <!-- Formulaire officiel Shopify -->
-      <form method="post" 
-            action="/cart/add" 
-            id="product-form-{{ section.id }}" 
-            class="card" 
-            style="padding:1rem;">
-        
+      <div class="price" style="margin-bottom:.75rem;">
+        {{ product.price | money }}
+      </div>
+
+      <div class="muted" style="margin-bottom:1.25rem;">
+        {{ product.description }}
+      </div>
+
+      <!-- ⚠️ Le bouton/quantité sont dans l’overlay à gauche, donc pas ici -->
+      <form
+        method="post"
+        action="/cart/add"
+        id="product-form-{{ section.id }}"
+        class="card"
+        style="padding:1rem;"
+      >
         {% if product.variants.size > 1 %}
           <label for="variant-select">Choisir une variante</label>
           <select id="variant-select" name="id" style="margin:.5rem 0 1rem;">
@@ -57,12 +70,11 @@
         {% else %}
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         {% endif %}
-        
-        <!-- plus besoin de champ quantité ici -->
-        
-        <button class="btn" type="submit" {% if product.available == false %}disabled{% endif %}>
-          {% if product.available %}Ajouter au panier{% else %}Rupture de stock{% endif %}
-        </button>
+
+        {%- comment -%}
+          Ne pas remettre de champ quantité/bouton ici.
+          L’overlay envoie la quantité/bouton au formulaire grâce à form="product-form-{{ section.id }}".
+        {%- endcomment -%}
       </form>
     </div>
   </div>
