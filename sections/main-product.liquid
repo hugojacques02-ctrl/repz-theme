@@ -1,16 +1,50 @@
 <section class="container" style="padding: 36px 0 56px;">
   <div class="grid grid-2" style="align-items:start;">
-    <div class="card">
+    
+    <!-- Bloc image produit -->
+    <div class="card" style="position:relative;">
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title }}" style="width:100%;height:auto;border-radius:12px;">
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" 
+             alt="{{ product.title }}" 
+             style="width:100%;height:auto;border-radius:12px;">
       {% endif %}
+
+      <!-- Boîte quantité dans le carré image -->
+      <div class="repz-qty-overlay">
+        <div class="repz-qty-box">
+          <label for="repz-qty-{{ section.id }}">Quantité</label>
+          <input 
+            id="repz-qty-{{ section.id }}" 
+            type="number" 
+            name="quantity" 
+            value="1" 
+            min="1" 
+            form="product-form-{{ section.id }}">
+          <button 
+            type="submit" 
+            class="repz-btn" 
+            form="product-form-{{ section.id }}">
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
     </div>
+
+    <!-- Bloc infos produit -->
     <div>
-      <h1 style="margin:0 0 .5rem 0; font-size:clamp(1.6rem,4.6vw,2.6rem); font-weight:900;">{{ product.title }}</h1>
+      <h1 style="margin:0 0 .5rem 0; font-size:clamp(1.6rem,4.6vw,2.6rem); font-weight:900;">
+        {{ product.title }}
+      </h1>
       <div class="price" style="margin-bottom:.75rem;">{{ product.price | money }}</div>
       <div class="muted" style="margin-bottom:1.25rem;">{{ product.description }}</div>
 
-      <form method="post" action="/cart/add" class="card" style="padding:1rem;">
+      <!-- Formulaire officiel Shopify -->
+      <form method="post" 
+            action="/cart/add" 
+            id="product-form-{{ section.id }}" 
+            class="card" 
+            style="padding:1rem;">
+        
         {% if product.variants.size > 1 %}
           <label for="variant-select">Choisir une variante</label>
           <select id="variant-select" name="id" style="margin:.5rem 0 1rem;">
@@ -23,22 +57,9 @@
         {% else %}
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         {% endif %}
-        <label for="qty">Quantité</label>
-<div class="product-box">
-  <div class="product-image">
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-    {% else %}
-      <p>Image produit (placeholder)</p>
-    {% endif %}
-  </div>
-
-  <div class="product-quantity">
-    <label for="quantity">Quantité</label>
-    <input type="number" id="quantity" name="quantity" value="1" min="1">
-    <button type="submit" class="btn">Ajouter au panier</button>
-  </div>
-</div>
+        
+        <!-- plus besoin de champ quantité ici -->
+        
         <button class="btn" type="submit" {% if product.available == false %}disabled{% endif %}>
           {% if product.available %}Ajouter au panier{% else %}Rupture de stock{% endif %}
         </button>
