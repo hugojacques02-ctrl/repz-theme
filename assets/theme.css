@@ -1,1 +1,45 @@
 /* Additional theme styles can go here. */
+.product-box {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+  color: white;
+}
+
+.product-image {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 50px 20px;
+  margin-bottom: 20px;
+}
+
+.product-quantity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-quantity input {
+  width: 80px;
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+  border-radius: 6px;
+  border: none;
+}
+
+.btn {
+  background-color: #d40000;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #a00000;
+}
