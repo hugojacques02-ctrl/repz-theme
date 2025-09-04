@@ -1,5 +1,39 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
-    "settings": {}
+    "settings": {},
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "instagram_url": "",
+          "tiktok_url": "",
+          "youtube_url": ""
+        }
+      }
+    },
+    "content_for_index": []
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".product-box {background-color: #1a1a1a; border-radius: 12px; padding: 30px; width: 300px; text-align: center; color: white;}",
+      ".product-image {background-color: #2a2a2a; border-radius: 8px; padding: 50px 20px; margin-bottom: 20px;}",
+      ".product-quantity {display: flex; flex-direction: column; gap: 10px;}",
+      ".product-quantity input {width: 80px; margin: 0 auto; padding: 5px; text-align: center; border-radius: 6px; border: none;}",
+      ".btn {background-color: #d40000; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;}",
+      ".btn:hover {background-color: #a00000;}"
+    ]
   }
 }
