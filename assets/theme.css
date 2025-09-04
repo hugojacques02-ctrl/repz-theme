@@ -43,3 +43,40 @@
 .btn:hover {
   background-color: #a00000;
 }
+/* REPZ — Boîte quantité dans le carré image */
+.product__media-wrapper { position: relative; } /* ancre pour le positionnement */
+
+.repz-qty-box{
+  position: absolute;
+  left: 50%;
+  bottom: 16px; /* ajuste si besoin */
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(0,0,0,.5);
+  padding: 10px 12px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.repz-qty-box input{
+  width: 64px;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: none;
+  color: #111;
+}
+
+.repz-qty-box button{
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+  background: #d40000;
+  color: #fff;
+  cursor: pointer;
+}
+.repz-qty-box button:hover{ background:#a00000; }
