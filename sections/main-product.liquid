@@ -24,7 +24,21 @@
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         {% endif %}
         <label for="qty">Quantité</label>
-        <input id="qty" type="number" name="quantity" value="1" min="1" style="margin:.5rem 0 1rem;">
+<div class="product-box">
+  <div class="product-image">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+    {% else %}
+      <p>Image produit (placeholder)</p>
+    {% endif %}
+  </div>
+
+  <div class="product-quantity">
+    <label for="quantity">Quantité</label>
+    <input type="number" id="quantity" name="quantity" value="1" min="1">
+    <button type="submit" class="btn">Ajouter au panier</button>
+  </div>
+</div>
         <button class="btn" type="submit" {% if product.available == false %}disabled{% endif %}>
           {% if product.available %}Ajouter au panier{% else %}Rupture de stock{% endif %}
         </button>
