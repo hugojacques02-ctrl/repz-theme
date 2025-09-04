@@ -38,4 +38,59 @@
 }
 .repz-btn[disabled] { opacity:.6; cursor:not-allowed; }
 .repz-btn:hover:not([disabled]) { background:#a00000; }
+/* ===== REPZ — Quantité dans le carré image (overlay) ===== */
+
+.repz-qty-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 5; /* au-dessus de l'image */
+}
+
+.repz-qty-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+}
+
+.repz-qty-label { color: #fff; }
+
+.repz-qty-input {
+  width: 72px;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: none;
+  background: #fff;
+  color: #111;
+}
+
+.repz-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+  background: #d40000;
+  color: #fff;
+  cursor: pointer;
+}
+.repz-btn[disabled] { opacity:.6; cursor:not-allowed; }
+.repz-btn:hover:not([disabled]) { background:#a00000; }
+
+/* Optionnel : sur mobile, place la boîte en-dessous de l'image au lieu de superposé */
+@media (max-width: 640px) {
+  .repz-qty-overlay {
+    position: static;
+    transform: none;
+    margin-top: 12px;
+  }
+  .repz-qty-box {
+    justify-content: center;
+  }
+}
 
